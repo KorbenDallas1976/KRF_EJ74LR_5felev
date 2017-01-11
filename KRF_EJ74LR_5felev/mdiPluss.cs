@@ -95,5 +95,57 @@ namespace KRF_EJ74LR_5felev
             };
             frm_cikkek.Show();
         }
+
+        private void mnuMeretek_Click(object sender, EventArgs e)
+        {
+            frmMeretek frm_meretek = new frmMeretek()
+            {
+                MdiParent = this
+            };
+            frm_meretek.Show();
+
+        }
+
+        private void mnuFajtak_Click(object sender, EventArgs e)
+        {
+            frmFajtak frm_fajtak = new frmFajtak()
+            {
+                MdiParent = this
+            };
+            frm_fajtak.Show();
+        }
+
+        private void mnuKimutatasCIkk_Click(object sender, EventArgs e)
+        {
+            frmKimutatasCikk frm_kimutatascikk = new frmKimutatasCikk()
+            {
+                MdiParent = this
+            };
+            frm_kimutatascikk.Show();
+        }
+
+        private void mnuPartnerek_Click(object sender, EventArgs e)
+        {
+            frmPartnerek frm_partnerek = new frmPartnerek()
+            {
+                MdiParent = this
+            };
+            frm_partnerek.Show();
+        }
+
+        private void mnuRendelesek_Click(object sender, EventArgs e)
+        {
+            frmRendelesek frm_rendelesek = new frmRendelesek()
+            {
+                MdiParent = this
+            };
+            frm_rendelesek.Show();
+        }
+
+        private void mnuAbout_Click(object sender, EventArgs e)
+        {
+            aboutBox ab = new aboutBox();
+            ab.ShowDialog();
+        }
     }
 }

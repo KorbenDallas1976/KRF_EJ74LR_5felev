@@ -179,6 +179,280 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="StatMeretTableAdapter" GeneratorDataComponentClassName="StatMeretTableAdapter" Name="StatMeret" UserDataComponentName="StatMeretTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="plussConnectionString (Settings)" DbObjectName="Meretek" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Meretek.MeretMegnev, COUNT(Cikkek.Cikkszam) AS CIkkekSzama
+FROM            (Cikkek INNER JOIN
+                         Meretek ON Cikkek.MeretAzon = Meretek.MeretAzon)
+GROUP BY Meretek.MeretMegnev</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="MeretMegnev" DataSetColumn="MeretMegnev" />
+              <Mapping SourceColumn="CIkkekSzama" DataSetColumn="CIkkekSzama" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="StatFajtaTableAdapter" GeneratorDataComponentClassName="StatFajtaTableAdapter" Name="StatFajta" UserDataComponentName="StatFajtaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="plussConnectionString (Settings)" DbObjectName="Fajtak" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Fajtak.FajtaMegnev, COUNT(Cikkek.Cikkszam) AS CIkkekSzama
+FROM            (Cikkek INNER JOIN
+                         Fajtak ON Cikkek.FajtaAzon = Fajtak.FajtaAzon)
+GROUP BY Fajtak.FajtaMegnev</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="FajtaMegnev" DataSetColumn="FajtaMegnev" />
+              <Mapping SourceColumn="CIkkekSzama" DataSetColumn="CIkkekSzama" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="statTop10ArTableAdapter" GeneratorDataComponentClassName="statTop10ArTableAdapter" Name="statTop10Ar" UserDataComponentName="statTop10ArTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="plussConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        TOP 10 Cikkek.Cikkszam, Cikkek.CikkMegnev, Meretek.MeretMegnev, Fajtak.FajtaMegnev, Cikkek.KiskerAr
+FROM            ((Cikkek INNER JOIN
+                         Fajtak ON Cikkek.FajtaAzon = Fajtak.FajtaAzon) INNER JOIN
+                         Meretek ON Cikkek.MeretAzon = Meretek.MeretAzon)
+ORDER BY Cikkek.KiskerAr DESC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Cikkszam" DataSetColumn="Cikkszam" />
+              <Mapping SourceColumn="CikkMegnev" DataSetColumn="CikkMegnev" />
+              <Mapping SourceColumn="MeretMegnev" DataSetColumn="MeretMegnev" />
+              <Mapping SourceColumn="FajtaMegnev" DataSetColumn="FajtaMegnev" />
+              <Mapping SourceColumn="KiskerAr" DataSetColumn="KiskerAr" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PartnerekTableAdapter" GeneratorDataComponentClassName="PartnerekTableAdapter" Name="Partnerek" UserDataComponentName="PartnerekTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="plussConnectionString (Settings)" DbObjectName="Partnerek" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM `Partnerek` WHERE ((`PartnerId` = ?) AND ((? = 1 AND `Nev` IS NULL) OR (`Nev` = ?)) AND ((? = 1 AND `Irsz` IS NULL) OR (`Irsz` = ?)) AND ((? = 1 AND `Varos` IS NULL) OR (`Varos` = ?)) AND ((? = 1 AND `Cim` IS NULL) OR (`Cim` = ?)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Original_PartnerId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="PartnerId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_Nev" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Nev" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Original_Nev" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Nev" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_Irsz" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Irsz" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Original_Irsz" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Irsz" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_Varos" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Varos" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Original_Varos" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Varos" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_Cim" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Cim" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Original_Cim" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Cim" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO `Partnerek` (`Nev`, `Irsz`, `Varos`, `Cim`) VALUES (?, ?, ?, ?)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Nev" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Nev" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Irsz" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Irsz" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Varos" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Varos" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Cim" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Cim" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT PartnerId, Nev, Irsz, Varos, Cim FROM Partnerek</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE `Partnerek` SET `Nev` = ?, `Irsz` = ?, `Varos` = ?, `Cim` = ? WHERE ((`PartnerId` = ?) AND ((? = 1 AND `Nev` IS NULL) OR (`Nev` = ?)) AND ((? = 1 AND `Irsz` IS NULL) OR (`Irsz` = ?)) AND ((? = 1 AND `Varos` IS NULL) OR (`Varos` = ?)) AND ((? = 1 AND `Cim` IS NULL) OR (`Cim` = ?)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Nev" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Nev" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Irsz" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Irsz" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Varos" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Varos" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Cim" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Cim" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Original_PartnerId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="PartnerId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_Nev" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Nev" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Original_Nev" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Nev" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_Irsz" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Irsz" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Original_Irsz" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Irsz" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_Varos" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Varos" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Original_Varos" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Varos" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_Cim" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Cim" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Original_Cim" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Cim" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="PartnerId" DataSetColumn="PartnerId" />
+              <Mapping SourceColumn="Nev" DataSetColumn="Nev" />
+              <Mapping SourceColumn="Irsz" DataSetColumn="Irsz" />
+              <Mapping SourceColumn="Varos" DataSetColumn="Varos" />
+              <Mapping SourceColumn="Cim" DataSetColumn="Cim" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RendelesFejTableAdapter" GeneratorDataComponentClassName="RendelesFejTableAdapter" Name="RendelesFej" UserDataComponentName="RendelesFejTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="plussConnectionString (Settings)" DbObjectName="RendelesFej" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM `RendelesFej` WHERE ((`RendelesId` = ?) AND ((? = 1 AND `PartnerId` IS NULL) OR (`PartnerId` = ?)) AND ((? = 1 AND `Datum` IS NULL) OR (`Datum` = ?)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Original_RendelesId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="RendelesId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_PartnerId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="PartnerId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Original_PartnerId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="PartnerId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_Datum" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Datum" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="Original_Datum" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="Datum" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO `RendelesFej` (`PartnerId`, `Datum`) VALUES (?, ?)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="PartnerId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="PartnerId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="Datum" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="Datum" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT RendelesId, PartnerId, Datum FROM RendelesFej</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE `RendelesFej` SET `PartnerId` = ?, `Datum` = ? WHERE ((`RendelesId` = ?) AND ((? = 1 AND `PartnerId` IS NULL) OR (`PartnerId` = ?)) AND ((? = 1 AND `Datum` IS NULL) OR (`Datum` = ?)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="PartnerId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="PartnerId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="Datum" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="Datum" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Original_RendelesId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="RendelesId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_PartnerId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="PartnerId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Original_PartnerId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="PartnerId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_Datum" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Datum" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="Original_Datum" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="Datum" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="RendelesId" DataSetColumn="RendelesId" />
+              <Mapping SourceColumn="PartnerId" DataSetColumn="PartnerId" />
+              <Mapping SourceColumn="Datum" DataSetColumn="Datum" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RendelesTetelekTableAdapter" GeneratorDataComponentClassName="RendelesTetelekTableAdapter" Name="RendelesTetelek" UserDataComponentName="RendelesTetelekTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="plussConnectionString (Settings)" DbObjectName="RendelesTetelek" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM `RendelesTetelek` WHERE ((`RendelesTetelId` = ?) AND ((? = 1 AND `RendelesId` IS NULL) OR (`RendelesId` = ?)) AND ((? = 1 AND `Cikkszam` IS NULL) OR (`Cikkszam` = ?)) AND ((? = 1 AND `Mennyiseg` IS NULL) OR (`Mennyiseg` = ?)) AND ((? = 1 AND `Ar` IS NULL) OR (`Ar` = ?)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Original_RendelesTetelId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="RendelesTetelId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_RendelesId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="RendelesId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Original_RendelesId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="RendelesId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_Cikkszam" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Cikkszam" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Original_Cikkszam" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Cikkszam" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_Mennyiseg" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Mennyiseg" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Original_Mennyiseg" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Mennyiseg" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_Ar" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Ar" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Double" Direction="Input" ParameterName="Original_Ar" Precision="0" ProviderType="Double" Scale="0" Size="0" SourceColumn="Ar" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO `RendelesTetelek` (`RendelesId`, `Cikkszam`, `Mennyiseg`, `Ar`) VALUES (?, ?, ?, ?)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="RendelesId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="RendelesId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Cikkszam" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Cikkszam" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Mennyiseg" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Mennyiseg" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Double" Direction="Input" ParameterName="Ar" Precision="0" ProviderType="Double" Scale="0" Size="0" SourceColumn="Ar" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT RendelesTetelId, RendelesId, Cikkszam, Mennyiseg, Ar FROM RendelesTetelek</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE `RendelesTetelek` SET `RendelesId` = ?, `Cikkszam` = ?, `Mennyiseg` = ?, `Ar` = ? WHERE ((`RendelesTetelId` = ?) AND ((? = 1 AND `RendelesId` IS NULL) OR (`RendelesId` = ?)) AND ((? = 1 AND `Cikkszam` IS NULL) OR (`Cikkszam` = ?)) AND ((? = 1 AND `Mennyiseg` IS NULL) OR (`Mennyiseg` = ?)) AND ((? = 1 AND `Ar` IS NULL) OR (`Ar` = ?)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="RendelesId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="RendelesId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Cikkszam" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Cikkszam" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Mennyiseg" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Mennyiseg" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Double" Direction="Input" ParameterName="Ar" Precision="0" ProviderType="Double" Scale="0" Size="0" SourceColumn="Ar" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Original_RendelesTetelId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="RendelesTetelId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_RendelesId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="RendelesId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Original_RendelesId" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="RendelesId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_Cikkszam" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Cikkszam" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Original_Cikkszam" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="Cikkszam" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_Mennyiseg" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Mennyiseg" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Original_Mennyiseg" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Mennyiseg" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_Ar" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="Ar" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Double" Direction="Input" ParameterName="Original_Ar" Precision="0" ProviderType="Double" Scale="0" Size="0" SourceColumn="Ar" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="RendelesTetelId" DataSetColumn="RendelesTetelId" />
+              <Mapping SourceColumn="RendelesId" DataSetColumn="RendelesId" />
+              <Mapping SourceColumn="Cikkszam" DataSetColumn="Cikkszam" />
+              <Mapping SourceColumn="Mennyiseg" DataSetColumn="Mennyiseg" />
+              <Mapping SourceColumn="Ar" DataSetColumn="Ar" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RendelesListaTableAdapter" GeneratorDataComponentClassName="RendelesListaTableAdapter" Name="RendelesLista" UserDataComponentName="RendelesListaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="plussConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Partnerek.Nev, RendelesFej.RendelesId, RendelesFej.Datum, COUNT(RendelesTetelek.RendelesTetelId) AS TetelekSzama
+FROM            ((RendelesFej INNER JOIN
+                         Partnerek ON RendelesFej.PartnerId = Partnerek.PartnerId) INNER JOIN
+                         RendelesTetelek ON RendelesFej.RendelesId = RendelesTetelek.RendelesId)
+GROUP BY Partnerek.Nev, RendelesFej.Datum, RendelesFej.RendelesId</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Nev" DataSetColumn="Nev" />
+              <Mapping SourceColumn="RendelesId" DataSetColumn="RendelesId" />
+              <Mapping SourceColumn="Datum" DataSetColumn="Datum" />
+              <Mapping SourceColumn="TetelekSzama" DataSetColumn="TetelekSzama" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -187,7 +461,7 @@
   <xs:element name="plussDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="plussDataSet" msprop:Generator_UserDSName="plussDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Cikkek" msprop:Generator_TableClassName="CikkekDataTable" msprop:Generator_TableVarName="tableCikkek" msprop:Generator_TablePropName="Cikkek" msprop:Generator_RowDeletingName="CikkekRowDeleting" msprop:Generator_RowChangingName="CikkekRowChanging" msprop:Generator_RowEvHandlerName="CikkekRowChangeEventHandler" msprop:Generator_RowDeletedName="CikkekRowDeleted" msprop:Generator_UserTableName="Cikkek" msprop:Generator_RowChangedName="CikkekRowChanged" msprop:Generator_RowEvArgName="CikkekRowChangeEvent" msprop:Generator_RowClassName="CikkekRow">
+        <xs:element name="Cikkek" msprop:Generator_TableClassName="CikkekDataTable" msprop:Generator_TableVarName="tableCikkek" msprop:Generator_RowChangedName="CikkekRowChanged" msprop:Generator_TablePropName="Cikkek" msprop:Generator_RowDeletingName="CikkekRowDeleting" msprop:Generator_RowChangingName="CikkekRowChanging" msprop:Generator_RowEvHandlerName="CikkekRowChangeEventHandler" msprop:Generator_RowDeletedName="CikkekRowDeleted" msprop:Generator_RowClassName="CikkekRow" msprop:Generator_UserTableName="Cikkek" msprop:Generator_RowEvArgName="CikkekRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Cikkszam" msprop:Generator_ColumnVarNameInTable="columnCikkszam" msprop:Generator_ColumnPropNameInRow="Cikkszam" msprop:Generator_ColumnPropNameInTable="CikkszamColumn" msprop:Generator_UserColumnName="Cikkszam">
@@ -223,7 +497,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Fajtak" msprop:Generator_TableClassName="FajtakDataTable" msprop:Generator_TableVarName="tableFajtak" msprop:Generator_TablePropName="Fajtak" msprop:Generator_RowDeletingName="FajtakRowDeleting" msprop:Generator_RowChangingName="FajtakRowChanging" msprop:Generator_RowEvHandlerName="FajtakRowChangeEventHandler" msprop:Generator_RowDeletedName="FajtakRowDeleted" msprop:Generator_UserTableName="Fajtak" msprop:Generator_RowChangedName="FajtakRowChanged" msprop:Generator_RowEvArgName="FajtakRowChangeEvent" msprop:Generator_RowClassName="FajtakRow">
+        <xs:element name="Fajtak" msprop:Generator_TableClassName="FajtakDataTable" msprop:Generator_TableVarName="tableFajtak" msprop:Generator_RowChangedName="FajtakRowChanged" msprop:Generator_TablePropName="Fajtak" msprop:Generator_RowDeletingName="FajtakRowDeleting" msprop:Generator_RowChangingName="FajtakRowChanging" msprop:Generator_RowEvHandlerName="FajtakRowChangeEventHandler" msprop:Generator_RowDeletedName="FajtakRowDeleted" msprop:Generator_RowClassName="FajtakRow" msprop:Generator_UserTableName="Fajtak" msprop:Generator_RowEvArgName="FajtakRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="FajtaAzon" msprop:Generator_ColumnVarNameInTable="columnFajtaAzon" msprop:Generator_ColumnPropNameInRow="FajtaAzon" msprop:Generator_ColumnPropNameInTable="FajtaAzonColumn" msprop:Generator_UserColumnName="FajtaAzon">
@@ -243,7 +517,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Meretek" msprop:Generator_TableClassName="MeretekDataTable" msprop:Generator_TableVarName="tableMeretek" msprop:Generator_TablePropName="Meretek" msprop:Generator_RowDeletingName="MeretekRowDeleting" msprop:Generator_RowChangingName="MeretekRowChanging" msprop:Generator_RowEvHandlerName="MeretekRowChangeEventHandler" msprop:Generator_RowDeletedName="MeretekRowDeleted" msprop:Generator_UserTableName="Meretek" msprop:Generator_RowChangedName="MeretekRowChanged" msprop:Generator_RowEvArgName="MeretekRowChangeEvent" msprop:Generator_RowClassName="MeretekRow">
+        <xs:element name="Meretek" msprop:Generator_TableClassName="MeretekDataTable" msprop:Generator_TableVarName="tableMeretek" msprop:Generator_RowChangedName="MeretekRowChanged" msprop:Generator_TablePropName="Meretek" msprop:Generator_RowDeletingName="MeretekRowDeleting" msprop:Generator_RowChangingName="MeretekRowChanging" msprop:Generator_RowEvHandlerName="MeretekRowChangeEventHandler" msprop:Generator_RowDeletedName="MeretekRowDeleted" msprop:Generator_RowClassName="MeretekRow" msprop:Generator_UserTableName="Meretek" msprop:Generator_RowEvArgName="MeretekRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MeretAzon" msprop:Generator_ColumnVarNameInTable="columnMeretAzon" msprop:Generator_ColumnPropNameInRow="MeretAzon" msprop:Generator_ColumnPropNameInTable="MeretAzonColumn" msprop:Generator_UserColumnName="MeretAzon" type="xs:short" />
@@ -254,6 +528,147 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="StatMeret" msprop:Generator_TableClassName="StatMeretDataTable" msprop:Generator_TableVarName="tableStatMeret" msprop:Generator_TablePropName="StatMeret" msprop:Generator_RowDeletingName="StatMeretRowDeleting" msprop:Generator_RowChangingName="StatMeretRowChanging" msprop:Generator_RowEvHandlerName="StatMeretRowChangeEventHandler" msprop:Generator_RowDeletedName="StatMeretRowDeleted" msprop:Generator_UserTableName="StatMeret" msprop:Generator_RowChangedName="StatMeretRowChanged" msprop:Generator_RowEvArgName="StatMeretRowChangeEvent" msprop:Generator_RowClassName="StatMeretRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MeretMegnev" msprop:Generator_ColumnVarNameInTable="columnMeretMegnev" msprop:Generator_ColumnPropNameInRow="MeretMegnev" msprop:Generator_ColumnPropNameInTable="MeretMegnevColumn" msprop:Generator_UserColumnName="MeretMegnev" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CIkkekSzama" msprop:Generator_ColumnVarNameInTable="columnCIkkekSzama" msprop:Generator_ColumnPropNameInRow="CIkkekSzama" msprop:Generator_ColumnPropNameInTable="CIkkekSzamaColumn" msprop:Generator_UserColumnName="CIkkekSzama" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="StatFajta" msprop:Generator_TableClassName="StatFajtaDataTable" msprop:Generator_TableVarName="tableStatFajta" msprop:Generator_TablePropName="StatFajta" msprop:Generator_RowDeletingName="StatFajtaRowDeleting" msprop:Generator_RowChangingName="StatFajtaRowChanging" msprop:Generator_RowEvHandlerName="StatFajtaRowChangeEventHandler" msprop:Generator_RowDeletedName="StatFajtaRowDeleted" msprop:Generator_UserTableName="StatFajta" msprop:Generator_RowChangedName="StatFajtaRowChanged" msprop:Generator_RowEvArgName="StatFajtaRowChangeEvent" msprop:Generator_RowClassName="StatFajtaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FajtaMegnev" msprop:Generator_ColumnVarNameInTable="columnFajtaMegnev" msprop:Generator_ColumnPropNameInRow="FajtaMegnev" msprop:Generator_ColumnPropNameInTable="FajtaMegnevColumn" msprop:Generator_UserColumnName="FajtaMegnev" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CIkkekSzama" msprop:Generator_ColumnVarNameInTable="columnCIkkekSzama" msprop:Generator_ColumnPropNameInRow="CIkkekSzama" msprop:Generator_ColumnPropNameInTable="CIkkekSzamaColumn" msprop:Generator_UserColumnName="CIkkekSzama" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="statTop10Ar" msprop:Generator_TableClassName="statTop10ArDataTable" msprop:Generator_TableVarName="tablestatTop10Ar" msprop:Generator_RowChangedName="statTop10ArRowChanged" msprop:Generator_TablePropName="statTop10Ar" msprop:Generator_RowDeletingName="statTop10ArRowDeleting" msprop:Generator_RowChangingName="statTop10ArRowChanging" msprop:Generator_RowEvHandlerName="statTop10ArRowChangeEventHandler" msprop:Generator_RowDeletedName="statTop10ArRowDeleted" msprop:Generator_RowClassName="statTop10ArRow" msprop:Generator_UserTableName="statTop10Ar" msprop:Generator_RowEvArgName="statTop10ArRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Cikkszam" msprop:Generator_ColumnVarNameInTable="columnCikkszam" msprop:Generator_ColumnPropNameInRow="Cikkszam" msprop:Generator_ColumnPropNameInTable="CikkszamColumn" msprop:Generator_UserColumnName="Cikkszam" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CikkMegnev" msprop:Generator_ColumnVarNameInTable="columnCikkMegnev" msprop:Generator_ColumnPropNameInRow="CikkMegnev" msprop:Generator_ColumnPropNameInTable="CikkMegnevColumn" msprop:Generator_UserColumnName="CikkMegnev" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MeretMegnev" msprop:Generator_ColumnVarNameInTable="columnMeretMegnev" msprop:Generator_ColumnPropNameInRow="MeretMegnev" msprop:Generator_ColumnPropNameInTable="MeretMegnevColumn" msprop:Generator_UserColumnName="MeretMegnev" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FajtaMegnev" msprop:Generator_ColumnVarNameInTable="columnFajtaMegnev" msprop:Generator_ColumnPropNameInRow="FajtaMegnev" msprop:Generator_ColumnPropNameInTable="FajtaMegnevColumn" msprop:Generator_UserColumnName="FajtaMegnev" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KiskerAr" msprop:Generator_ColumnVarNameInTable="columnKiskerAr" msprop:Generator_ColumnPropNameInRow="KiskerAr" msprop:Generator_ColumnPropNameInTable="KiskerArColumn" msprop:Generator_UserColumnName="KiskerAr" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Partnerek" msprop:Generator_TableClassName="PartnerekDataTable" msprop:Generator_TableVarName="tablePartnerek" msprop:Generator_TablePropName="Partnerek" msprop:Generator_RowDeletingName="PartnerekRowDeleting" msprop:Generator_RowChangingName="PartnerekRowChanging" msprop:Generator_RowEvHandlerName="PartnerekRowChangeEventHandler" msprop:Generator_RowDeletedName="PartnerekRowDeleted" msprop:Generator_UserTableName="Partnerek" msprop:Generator_RowChangedName="PartnerekRowChanged" msprop:Generator_RowEvArgName="PartnerekRowChangeEvent" msprop:Generator_RowClassName="PartnerekRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PartnerId" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnPartnerId" msprop:Generator_ColumnPropNameInRow="PartnerId" msprop:Generator_ColumnPropNameInTable="PartnerIdColumn" msprop:Generator_UserColumnName="PartnerId" type="xs:int" />
+              <xs:element name="Nev" msprop:Generator_ColumnVarNameInTable="columnNev" msprop:Generator_ColumnPropNameInRow="Nev" msprop:Generator_ColumnPropNameInTable="NevColumn" msprop:Generator_UserColumnName="Nev" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Irsz" msprop:Generator_ColumnVarNameInTable="columnIrsz" msprop:Generator_ColumnPropNameInRow="Irsz" msprop:Generator_ColumnPropNameInTable="IrszColumn" msprop:Generator_UserColumnName="Irsz" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Varos" msprop:Generator_ColumnVarNameInTable="columnVaros" msprop:Generator_ColumnPropNameInRow="Varos" msprop:Generator_ColumnPropNameInTable="VarosColumn" msprop:Generator_UserColumnName="Varos" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Cim" msprop:Generator_ColumnVarNameInTable="columnCim" msprop:Generator_ColumnPropNameInRow="Cim" msprop:Generator_ColumnPropNameInTable="CimColumn" msprop:Generator_UserColumnName="Cim" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RendelesFej" msprop:Generator_TableClassName="RendelesFejDataTable" msprop:Generator_TableVarName="tableRendelesFej" msprop:Generator_TablePropName="RendelesFej" msprop:Generator_RowDeletingName="RendelesFejRowDeleting" msprop:Generator_RowChangingName="RendelesFejRowChanging" msprop:Generator_RowEvHandlerName="RendelesFejRowChangeEventHandler" msprop:Generator_RowDeletedName="RendelesFejRowDeleted" msprop:Generator_UserTableName="RendelesFej" msprop:Generator_RowChangedName="RendelesFejRowChanged" msprop:Generator_RowEvArgName="RendelesFejRowChangeEvent" msprop:Generator_RowClassName="RendelesFejRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RendelesId" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnRendelesId" msprop:Generator_ColumnPropNameInRow="RendelesId" msprop:Generator_ColumnPropNameInTable="RendelesIdColumn" msprop:Generator_UserColumnName="RendelesId" type="xs:int" />
+              <xs:element name="PartnerId" msprop:Generator_ColumnVarNameInTable="columnPartnerId" msprop:Generator_ColumnPropNameInRow="PartnerId" msprop:Generator_ColumnPropNameInTable="PartnerIdColumn" msprop:Generator_UserColumnName="PartnerId" type="xs:int" minOccurs="0" />
+              <xs:element name="Datum" msprop:Generator_ColumnVarNameInTable="columnDatum" msprop:Generator_ColumnPropNameInRow="Datum" msprop:Generator_ColumnPropNameInTable="DatumColumn" msprop:Generator_UserColumnName="Datum" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RendelesTetelek" msprop:Generator_TableClassName="RendelesTetelekDataTable" msprop:Generator_TableVarName="tableRendelesTetelek" msprop:Generator_TablePropName="RendelesTetelek" msprop:Generator_RowDeletingName="RendelesTetelekRowDeleting" msprop:Generator_RowChangingName="RendelesTetelekRowChanging" msprop:Generator_RowEvHandlerName="RendelesTetelekRowChangeEventHandler" msprop:Generator_RowDeletedName="RendelesTetelekRowDeleted" msprop:Generator_UserTableName="RendelesTetelek" msprop:Generator_RowChangedName="RendelesTetelekRowChanged" msprop:Generator_RowEvArgName="RendelesTetelekRowChangeEvent" msprop:Generator_RowClassName="RendelesTetelekRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RendelesTetelId" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnRendelesTetelId" msprop:Generator_ColumnPropNameInRow="RendelesTetelId" msprop:Generator_ColumnPropNameInTable="RendelesTetelIdColumn" msprop:Generator_UserColumnName="RendelesTetelId" type="xs:int" />
+              <xs:element name="RendelesId" msprop:Generator_ColumnVarNameInTable="columnRendelesId" msprop:Generator_ColumnPropNameInRow="RendelesId" msprop:Generator_ColumnPropNameInTable="RendelesIdColumn" msprop:Generator_UserColumnName="RendelesId" type="xs:int" minOccurs="0" />
+              <xs:element name="Cikkszam" msprop:Generator_ColumnVarNameInTable="columnCikkszam" msprop:Generator_ColumnPropNameInRow="Cikkszam" msprop:Generator_ColumnPropNameInTable="CikkszamColumn" msprop:Generator_UserColumnName="Cikkszam" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Mennyiseg" msprop:Generator_ColumnVarNameInTable="columnMennyiseg" msprop:Generator_ColumnPropNameInRow="Mennyiseg" msprop:Generator_ColumnPropNameInTable="MennyisegColumn" msprop:Generator_UserColumnName="Mennyiseg" type="xs:int" minOccurs="0" />
+              <xs:element name="Ar" msprop:Generator_ColumnVarNameInTable="columnAr" msprop:Generator_ColumnPropNameInRow="Ar" msprop:Generator_ColumnPropNameInTable="ArColumn" msprop:Generator_UserColumnName="Ar" type="xs:double" minOccurs="0" />
+              <xs:element name="Osszeg" msdata:ReadOnly="true" msdata:Expression="Mennyiseg * Ar" msprop:Generator_ColumnVarNameInTable="columnOsszeg" msprop:Generator_ColumnPropNameInRow="Osszeg" msprop:Generator_ColumnPropNameInTable="OsszegColumn" msprop:Generator_UserColumnName="Osszeg" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RendelesLista" msprop:Generator_TableClassName="RendelesListaDataTable" msprop:Generator_TableVarName="tableRendelesLista" msprop:Generator_TablePropName="RendelesLista" msprop:Generator_RowDeletingName="RendelesListaRowDeleting" msprop:Generator_RowChangingName="RendelesListaRowChanging" msprop:Generator_RowEvHandlerName="RendelesListaRowChangeEventHandler" msprop:Generator_RowDeletedName="RendelesListaRowDeleted" msprop:Generator_UserTableName="RendelesLista" msprop:Generator_RowChangedName="RendelesListaRowChanged" msprop:Generator_RowEvArgName="RendelesListaRowChangeEvent" msprop:Generator_RowClassName="RendelesListaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nev" msprop:Generator_ColumnVarNameInTable="columnNev" msprop:Generator_ColumnPropNameInRow="Nev" msprop:Generator_ColumnPropNameInTable="NevColumn" msprop:Generator_UserColumnName="Nev" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RendelesId" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnRendelesId" msprop:Generator_ColumnPropNameInRow="RendelesId" msprop:Generator_ColumnPropNameInTable="RendelesIdColumn" msprop:Generator_UserColumnName="RendelesId" type="xs:int" minOccurs="0" />
+              <xs:element name="Datum" msprop:Generator_ColumnVarNameInTable="columnDatum" msprop:Generator_ColumnPropNameInRow="Datum" msprop:Generator_ColumnPropNameInTable="DatumColumn" msprop:Generator_UserColumnName="Datum" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TetelekSzama" msprop:Generator_ColumnVarNameInTable="columnTetelekSzama" msprop:Generator_ColumnPropNameInRow="TetelekSzama" msprop:Generator_ColumnPropNameInTable="TetelekSzamaColumn" msprop:Generator_UserColumnName="TetelekSzama" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -271,11 +686,26 @@
       <xs:selector xpath=".//mstns:Meretek" />
       <xs:field xpath="mstns:MeretAzon" />
     </xs:unique>
+    <xs:unique name="Partnerek_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Partnerek" />
+      <xs:field xpath="mstns:PartnerId" />
+    </xs:unique>
+    <xs:unique name="RendelesFej_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:RendelesFej" />
+      <xs:field xpath="mstns:RendelesId" />
+    </xs:unique>
+    <xs:unique name="RendelesTetelek_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:RendelesTetelek" />
+      <xs:field xpath="mstns:RendelesTetelId" />
+    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FajtakCikkek" msdata:parent="Fajtak" msdata:child="Cikkek" msdata:parentkey="FajtaAzon" msdata:childkey="FajtaAzon" msprop:Generator_UserChildTable="Cikkek" msprop:Generator_ChildPropName="GetCikkekRows" msprop:Generator_UserRelationName="FajtakCikkek" msprop:Generator_RelationVarName="relationFajtakCikkek" msprop:Generator_UserParentTable="Fajtak" msprop:Generator_ParentPropName="FajtakRow" />
-      <msdata:Relationship name="MeretekCikkek" msdata:parent="Meretek" msdata:child="Cikkek" msdata:parentkey="MeretAzon" msdata:childkey="MeretAzon" msprop:Generator_UserChildTable="Cikkek" msprop:Generator_ChildPropName="GetCikkekRows" msprop:Generator_UserRelationName="MeretekCikkek" msprop:Generator_RelationVarName="relationMeretekCikkek" msprop:Generator_UserParentTable="Meretek" msprop:Generator_ParentPropName="MeretekRow" />
+      <msdata:Relationship name="FajtakCikkek" msdata:parent="Fajtak" msdata:child="Cikkek" msdata:parentkey="FajtaAzon" msdata:childkey="FajtaAzon" msprop:Generator_UserChildTable="Cikkek" msprop:Generator_ChildPropName="GetCikkekRows" msprop:Generator_UserRelationName="FajtakCikkek" msprop:Generator_ParentPropName="FajtakRow" msprop:Generator_RelationVarName="relationFajtakCikkek" msprop:Generator_UserParentTable="Fajtak" />
+      <msdata:Relationship name="MeretekCikkek" msdata:parent="Meretek" msdata:child="Cikkek" msdata:parentkey="MeretAzon" msdata:childkey="MeretAzon" msprop:Generator_UserChildTable="Cikkek" msprop:Generator_ChildPropName="GetCikkekRows" msprop:Generator_UserRelationName="MeretekCikkek" msprop:Generator_ParentPropName="MeretekRow" msprop:Generator_RelationVarName="relationMeretekCikkek" msprop:Generator_UserParentTable="Meretek" />
+      <msdata:Relationship name="PartnerekRendelesFej" msdata:parent="Partnerek" msdata:child="RendelesFej" msdata:parentkey="PartnerId" msdata:childkey="PartnerId" msprop:Generator_UserChildTable="RendelesFej" msprop:Generator_ChildPropName="GetRendelesFejRows" msprop:Generator_UserRelationName="PartnerekRendelesFej" msprop:Generator_ParentPropName="PartnerekRow" msprop:Generator_RelationVarName="relationPartnerekRendelesFej" msprop:Generator_UserParentTable="Partnerek" />
+      <msdata:Relationship name="CikkekRendelesTetelek" msdata:parent="Cikkek" msdata:child="RendelesTetelek" msdata:parentkey="Cikkszam" msdata:childkey="Cikkszam" msprop:Generator_UserChildTable="RendelesTetelek" msprop:Generator_ChildPropName="GetRendelesTetelekRows" msprop:Generator_UserRelationName="CikkekRendelesTetelek" msprop:Generator_ParentPropName="CikkekRow" msprop:Generator_RelationVarName="relationCikkekRendelesTetelek" msprop:Generator_UserParentTable="Cikkek" />
+      <msdata:Relationship name="RendelesFejRendelesTetelek" msdata:parent="RendelesFej" msdata:child="RendelesTetelek" msdata:parentkey="RendelesId" msdata:childkey="RendelesId" msprop:Generator_UserChildTable="RendelesTetelek" msprop:Generator_ChildPropName="GetRendelesTetelekRows" msprop:Generator_UserRelationName="RendelesFejRendelesTetelek" msprop:Generator_ParentPropName="RendelesFejRow" msprop:Generator_RelationVarName="relationRendelesFejRendelesTetelek" msprop:Generator_UserParentTable="RendelesFej" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

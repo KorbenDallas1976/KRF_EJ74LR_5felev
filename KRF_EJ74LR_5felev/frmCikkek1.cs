@@ -30,7 +30,7 @@ namespace KRF_EJ74LR_5felev
             frissitCikkLista();
         }
 
-        private void frissitCikkLista()
+        private void frissitCikkLista ()
         {
             try
             {
@@ -80,7 +80,7 @@ namespace KRF_EJ74LR_5felev
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 this.txbKepFile.Text = Path.GetFileName(openFileDialog1.FileName);
-
+                
                 // megmutatjuk az új képet
                 frissitKep();
             }

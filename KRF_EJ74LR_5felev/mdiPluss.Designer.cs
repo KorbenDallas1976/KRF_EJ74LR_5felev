@@ -33,6 +33,16 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMasterData = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPartnerek = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuCikkek = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMeretek = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFajtak = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuErtekesites = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRendelesek = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuKimutatasok = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuKimutatasCIkk = new System.Windows.Forms.ToolStripMenuItem();
             this.editMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,16 +61,12 @@
             this.mnuCloseAll = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuArrangeIcons = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUsersGuide = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.mnuMasterData = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuUsersGuide = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCikkek = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuMeretek = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuFajtak = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +76,8 @@
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuFile,
             this.mnuMasterData,
+            this.mnuErtekesites,
+            this.mnuKimutatasok,
             this.editMenu,
             this.mnuView,
             this.mnuWindows,
@@ -94,8 +102,83 @@
             // 
             this.mnuExit.Name = "mnuExit";
             this.mnuExit.Size = new System.Drawing.Size(152, 22);
-            this.mnuExit.Text = "E&xit";
+            this.mnuExit.Text = "&Kilép";
             this.mnuExit.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
+            // 
+            // mnuMasterData
+            // 
+            this.mnuMasterData.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuPartnerek,
+            this.toolStripSeparator1,
+            this.mnuCikkek,
+            this.mnuMeretek,
+            this.mnuFajtak});
+            this.mnuMasterData.Name = "mnuMasterData";
+            this.mnuMasterData.Size = new System.Drawing.Size(82, 20);
+            this.mnuMasterData.Text = "Törzsadatok";
+            // 
+            // mnuPartnerek
+            // 
+            this.mnuPartnerek.Name = "mnuPartnerek";
+            this.mnuPartnerek.Size = new System.Drawing.Size(124, 22);
+            this.mnuPartnerek.Text = "Partnerek";
+            this.mnuPartnerek.Click += new System.EventHandler(this.mnuPartnerek_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
+            // 
+            // mnuCikkek
+            // 
+            this.mnuCikkek.Name = "mnuCikkek";
+            this.mnuCikkek.Size = new System.Drawing.Size(124, 22);
+            this.mnuCikkek.Text = "Cikkek";
+            this.mnuCikkek.Click += new System.EventHandler(this.mnuCikkek_Click);
+            // 
+            // mnuMeretek
+            // 
+            this.mnuMeretek.Name = "mnuMeretek";
+            this.mnuMeretek.Size = new System.Drawing.Size(124, 22);
+            this.mnuMeretek.Text = "Méretek";
+            this.mnuMeretek.Click += new System.EventHandler(this.mnuMeretek_Click);
+            // 
+            // mnuFajtak
+            // 
+            this.mnuFajtak.Name = "mnuFajtak";
+            this.mnuFajtak.Size = new System.Drawing.Size(124, 22);
+            this.mnuFajtak.Text = "Fajták";
+            this.mnuFajtak.Click += new System.EventHandler(this.mnuFajtak_Click);
+            // 
+            // mnuErtekesites
+            // 
+            this.mnuErtekesites.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuRendelesek});
+            this.mnuErtekesites.Name = "mnuErtekesites";
+            this.mnuErtekesites.Size = new System.Drawing.Size(74, 20);
+            this.mnuErtekesites.Text = "Értékesítés";
+            // 
+            // mnuRendelesek
+            // 
+            this.mnuRendelesek.Name = "mnuRendelesek";
+            this.mnuRendelesek.Size = new System.Drawing.Size(133, 22);
+            this.mnuRendelesek.Text = "Rendelések";
+            this.mnuRendelesek.Click += new System.EventHandler(this.mnuRendelesek_Click);
+            // 
+            // mnuKimutatasok
+            // 
+            this.mnuKimutatasok.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuKimutatasCIkk});
+            this.mnuKimutatasok.Name = "mnuKimutatasok";
+            this.mnuKimutatasok.Size = new System.Drawing.Size(85, 20);
+            this.mnuKimutatasok.Text = "Kimutatások";
+            // 
+            // mnuKimutatasCIkk
+            // 
+            this.mnuKimutatasCIkk.Name = "mnuKimutatasCIkk";
+            this.mnuKimutatasCIkk.Size = new System.Drawing.Size(109, 22);
+            this.mnuKimutatasCIkk.Text = "CIkkek";
+            this.mnuKimutatasCIkk.Click += new System.EventHandler(this.mnuKimutatasCIkk_Click);
             // 
             // editMenu
             // 
@@ -189,7 +272,7 @@
             this.mnuStatusBar.CheckOnClick = true;
             this.mnuStatusBar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnuStatusBar.Name = "mnuStatusBar";
-            this.mnuStatusBar.Size = new System.Drawing.Size(152, 22);
+            this.mnuStatusBar.Size = new System.Drawing.Size(128, 22);
             this.mnuStatusBar.Text = "&Állapotsor";
             this.mnuStatusBar.Click += new System.EventHandler(this.StatusBarToolStripMenuItem_Click);
             // 
@@ -250,6 +333,14 @@
             this.mnuHelp.Size = new System.Drawing.Size(46, 20);
             this.mnuHelp.Text = "&Súgó";
             // 
+            // mnuUsersGuide
+            // 
+            this.mnuUsersGuide.Image = ((System.Drawing.Image)(resources.GetObject("mnuUsersGuide.Image")));
+            this.mnuUsersGuide.ImageTransparentColor = System.Drawing.Color.Black;
+            this.mnuUsersGuide.Name = "mnuUsersGuide";
+            this.mnuUsersGuide.Size = new System.Drawing.Size(181, 22);
+            this.mnuUsersGuide.Text = "&Használati útmutató";
+            // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
@@ -260,6 +351,7 @@
             this.mnuAbout.Name = "mnuAbout";
             this.mnuAbout.Size = new System.Drawing.Size(181, 22);
             this.mnuAbout.Text = "&Névjegy";
+            this.mnuAbout.Click += new System.EventHandler(this.mnuAbout_Click);
             // 
             // statusStrip
             // 
@@ -276,43 +368,6 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(44, 17);
             this.toolStripStatusLabel.Text = "Státusz";
-            // 
-            // mnuMasterData
-            // 
-            this.mnuMasterData.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuCikkek,
-            this.mnuMeretek,
-            this.mnuFajtak});
-            this.mnuMasterData.Name = "mnuMasterData";
-            this.mnuMasterData.Size = new System.Drawing.Size(82, 20);
-            this.mnuMasterData.Text = "Törzsadatok";
-            // 
-            // mnuUsersGuide
-            // 
-            this.mnuUsersGuide.Image = ((System.Drawing.Image)(resources.GetObject("mnuUsersGuide.Image")));
-            this.mnuUsersGuide.ImageTransparentColor = System.Drawing.Color.Black;
-            this.mnuUsersGuide.Name = "mnuUsersGuide";
-            this.mnuUsersGuide.Size = new System.Drawing.Size(181, 22);
-            this.mnuUsersGuide.Text = "&Használati útmutató";
-            // 
-            // mnuCikkek
-            // 
-            this.mnuCikkek.Name = "mnuCikkek";
-            this.mnuCikkek.Size = new System.Drawing.Size(152, 22);
-            this.mnuCikkek.Text = "Cikkek";
-            this.mnuCikkek.Click += new System.EventHandler(this.mnuCikkek_Click);
-            // 
-            // mnuMeretek
-            // 
-            this.mnuMeretek.Name = "mnuMeretek";
-            this.mnuMeretek.Size = new System.Drawing.Size(152, 22);
-            this.mnuMeretek.Text = "Méretek";
-            // 
-            // mnuFajtak
-            // 
-            this.mnuFajtak.Name = "mnuFajtak";
-            this.mnuFajtak.Size = new System.Drawing.Size(152, 22);
-            this.mnuFajtak.Text = "Fajták";
             // 
             // mdiPluss
             // 
@@ -367,6 +422,12 @@
         private System.Windows.Forms.ToolStripMenuItem mnuCikkek;
         private System.Windows.Forms.ToolStripMenuItem mnuMeretek;
         private System.Windows.Forms.ToolStripMenuItem mnuFajtak;
+        private System.Windows.Forms.ToolStripMenuItem mnuKimutatasok;
+        private System.Windows.Forms.ToolStripMenuItem mnuKimutatasCIkk;
+        private System.Windows.Forms.ToolStripMenuItem mnuPartnerek;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem mnuErtekesites;
+        private System.Windows.Forms.ToolStripMenuItem mnuRendelesek;
     }
 }
 

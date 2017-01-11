@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("KRF_EJ74LR_5felev")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Plüss kontrol")]
+[assembly: AssemblyDescription("Plüss birizgáló progi")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Kurucz Ferenc")]
 [assembly: AssemblyProduct("KRF_EJ74LR_5felev")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]

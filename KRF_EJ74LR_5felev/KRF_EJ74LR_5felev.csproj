@@ -42,16 +42,63 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="aboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="aboutBox.Designer.cs">
+      <DependentUpon>aboutBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCikkek.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCikkek.Designer.cs">
       <DependentUpon>frmCikkek.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFajtak.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFajtak.Designer.cs">
+      <DependentUpon>frmFajtak.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKimutatasCikk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKimutatasCikk.Designer.cs">
+      <DependentUpon>frmKimutatasCikk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMeretek.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMeretek.Designer.cs">
+      <DependentUpon>frmMeretek.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPartnerek.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPartnerek.Designer.cs">
+      <DependentUpon>frmPartnerek.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRendelesek.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRendelesek.Designer.cs">
+      <DependentUpon>frmRendelesek.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRendelesReszletei.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRendelesReszletei.Designer.cs">
+      <DependentUpon>frmRendelesReszletei.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUjCikk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUjCikk.Designer.cs">
+      <DependentUpon>frmUjCikk.cs</DependentUpon>
     </Compile>
     <Compile Include="mdiPluss.cs">
       <SubType>Form</SubType>
@@ -66,8 +113,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmCikkek.resx">
-      <DependentUpon>frmCikkek.cs</DependentUpon>
+    <EmbeddedResource Include="aboutBox.resx">
+      <DependentUpon>aboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFajtak.resx">
+      <DependentUpon>frmFajtak.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKimutatasCikk.resx">
+      <DependentUpon>frmKimutatasCikk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMeretek.resx">
+      <DependentUpon>frmMeretek.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPartnerek.resx">
+      <DependentUpon>frmPartnerek.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRendelesek.resx">
+      <DependentUpon>frmRendelesek.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRendelesReszletei.resx">
+      <DependentUpon>frmRendelesReszletei.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUjCikk.resx">
+      <DependentUpon>frmUjCikk.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mdiPluss.resx">
       <DependentUpon>mdiPluss.cs</DependentUpon>
