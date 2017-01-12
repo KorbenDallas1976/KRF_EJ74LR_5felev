@@ -147,5 +147,11 @@ namespace KRF_EJ74LR_5felev
             aboutBox ab = new aboutBox();
             ab.ShowDialog();
         }
+
+        private void mnuUsersGuide_Click(object sender, EventArgs e)
+        {
+            frmUsersGuide frm_ug = new frmUsersGuide();
+            frm_ug.ShowDialog();
+        }
     }
 }

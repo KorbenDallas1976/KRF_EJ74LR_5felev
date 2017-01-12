@@ -26,7 +26,7 @@ namespace KRF_EJ74LR_5felev
 
         private void frmRendelesReszletei_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'plussDataSet.Partnerek' table. You can move, or remove it, as needed.
+            this.cikkekTableAdapter.Fill(this.plussDataSet.Cikkek);
             this.partnerekTableAdapter.Fill(this.plussDataSet.Partnerek);
 
             if (this.RendelesId != null)
@@ -36,8 +36,6 @@ namespace KRF_EJ74LR_5felev
 
                 this.rendelesTetelekTableAdapter.Fill(this.plussDataSet.RendelesTetelek);
                 this.rendelesTetelekBindingSource.Filter = "RendelesId = " + this.RendelesId.ToString();
-
-                this.dataGridView1.Enabled = true;
             }
         }
 
@@ -65,7 +63,7 @@ namespace KRF_EJ74LR_5felev
 
                 }
 
-                MessageBox.Show("Változtatások elmentve.");
+                //MessageBox.Show("Változtatások elmentve.");
             }
             catch (Exception Ex)
             {

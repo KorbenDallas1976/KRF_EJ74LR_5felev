@@ -100,6 +100,18 @@
     <Compile Include="frmUjCikk.Designer.cs">
       <DependentUpon>frmUjCikk.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUjRendeles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUjRendeles.Designer.cs">
+      <DependentUpon>frmUjRendeles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsersGuide.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsersGuide.Designer.cs">
+      <DependentUpon>frmUsersGuide.cs</DependentUpon>
+    </Compile>
     <Compile Include="mdiPluss.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +148,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmUjCikk.resx">
       <DependentUpon>frmUjCikk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUjRendeles.resx">
+      <DependentUpon>frmUjRendeles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsersGuide.resx">
+      <DependentUpon>frmUsersGuide.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mdiPluss.resx">
       <DependentUpon>mdiPluss.cs</DependentUpon>

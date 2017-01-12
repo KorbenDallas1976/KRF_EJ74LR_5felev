@@ -18,8 +18,6 @@ namespace KRF_EJ74LR_5felev
 
         private void frmRendelesek_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'plussDataSet.RendelesLista' table. You can move, or remove it, as needed.
-            this.rendelesListaTableAdapter.Fill(this.plussDataSet.RendelesLista);
             frissitRendelesLista();
         }
 
@@ -38,20 +36,45 @@ namespace KRF_EJ74LR_5felev
 
                 using (frmRendelesReszletei frm_rendresz = new KRF_EJ74LR_5felev.frmRendelesReszletei(rid))
                 {
-                    frm_rendresz.ShowDialog();
+                    if (frm_rendresz.ShowDialog() == DialogResult.OK)
+                    {
+                        frissitRendelesLista();
+                    }
                 }
             }
         }
 
         private void btnUjRendeles_Click(object sender, EventArgs e)
         {
+            /*
             using (frmRendelesReszletei frm_rendresz = new KRF_EJ74LR_5felev.frmRendelesReszletei())
             {
                 frm_rendresz.ShowDialog();
             }
+            */
+            using (frmUjRendeles frm_ujrend = new frmUjRendeles())
+            {
+                if (frm_ujrend.ShowDialog() == DialogResult.OK)
+                {
+                    frissitRendelesLista();
 
-            frissitRendelesLista();
+                    /*
+                    rendelesListaBindingSource.ResetBindings(false);
 
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Refresh();
+
+                    dataGridView1.DataSource = rendelesListaBindingSource;
+                    dataGridView1.Refresh();
+                    */
+
+                    // ugrás az utolsó sorra
+                    dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
+                    // kijelölés
+                    dataGridView1.ClearSelection();
+                    dataGridView1.Rows[dataGridView1.RowCount - 1].Selected = true;
+                }
+            }
         }
     }
 }

@@ -2684,6 +2684,8 @@ namespace KRF_EJ74LR_5felev {
             
             private global::System.Data.DataColumn columnDatum;
             
+            private static System.DateTime columnDatum_defaultValue = global::System.DateTime.Parse("1900-01-01T00:00:00");
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public RendelesFejDataTable() {
@@ -2837,6 +2839,7 @@ namespace KRF_EJ74LR_5felev {
                 this.columnRendelesId.AutoIncrementStep = -1;
                 this.columnRendelesId.AllowDBNull = false;
                 this.columnRendelesId.Unique = true;
+                this.columnDatum.DefaultValue = ((System.DateTime)(RendelesFejDataTable.columnDatum_defaultValue));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8162,9 +8165,10 @@ ORDER BY Cikkek.KiskerAr DESC";
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT        Partnerek.Nev, RendelesFej.RendelesId, RendelesFej.Datum, COUNT(RendelesTetelek.RendelesTetelId) AS TetelekSzama
 FROM            ((RendelesFej INNER JOIN
-                         Partnerek ON RendelesFej.PartnerId = Partnerek.PartnerId) INNER JOIN
+                         Partnerek ON RendelesFej.PartnerId = Partnerek.PartnerId) LEFT JOIN
                          RendelesTetelek ON RendelesFej.RendelesId = RendelesTetelek.RendelesId)
-GROUP BY Partnerek.Nev, RendelesFej.Datum, RendelesFej.RendelesId";
+GROUP BY Partnerek.Nev, RendelesFej.Datum, RendelesFej.RendelesId
+ORDER BY RendelesFej.RendelesId ASC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

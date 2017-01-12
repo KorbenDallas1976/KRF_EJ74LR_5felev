@@ -101,7 +101,7 @@
             // mnuExit
             // 
             this.mnuExit.Name = "mnuExit";
-            this.mnuExit.Size = new System.Drawing.Size(152, 22);
+            this.mnuExit.Size = new System.Drawing.Size(100, 22);
             this.mnuExit.Text = "&Kilép";
             this.mnuExit.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
             // 
@@ -340,6 +340,7 @@
             this.mnuUsersGuide.Name = "mnuUsersGuide";
             this.mnuUsersGuide.Size = new System.Drawing.Size(181, 22);
             this.mnuUsersGuide.Text = "&Használati útmutató";
+            this.mnuUsersGuide.Click += new System.EventHandler(this.mnuUsersGuide_Click);
             // 
             // toolStripSeparator8
             // 
